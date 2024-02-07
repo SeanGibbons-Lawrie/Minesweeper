@@ -1,6 +1,6 @@
 //Logic
 
-const TILE_STATUSES = {
+export const TILE_STATUSES = {
   HIDDEN: 'hidden',
   MINE: 'mine',
   NUMBER: 'number',
@@ -33,6 +33,20 @@ export function createBoard(boardSize, numberOfMines) {
     board.push(row)
   }
   return board
+}
+
+export function markTile(tile) {
+  if (
+    tile.status !== TILE_STATUSES.HIDDEN &&
+    tile.status !== TILE_STATUSES.MARKED
+  ) {
+    return
+  }
+  if (tile.status === TILE_STATUSES.MARKED) {
+    tile.status = TILE_STATUSES.HIDDEN
+  } else {
+    tile.status = TILE_STATUSES.MARKED
+  }
 }
 
 function getMinePositions(boardSize, numberOfMines) {
